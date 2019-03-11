@@ -3,7 +3,7 @@ package de.baitando.japs.account.persistence;
 import de.baitando.japs.account.model.Account;
 
 /**
- * Offers actions for saving and loading one or more @{@link Account} entities.
+ * Offers actions for saving and loading one or more {@link Account} entities.
  */
 public interface AccountStore {
 
