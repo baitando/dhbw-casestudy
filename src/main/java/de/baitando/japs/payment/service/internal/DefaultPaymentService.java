@@ -8,6 +8,7 @@ import de.baitando.japs.payment.persistence.PaymentStore;
 import de.baitando.japs.payment.persistence.internal.InMemoryPaymentStore;
 import de.baitando.japs.payment.service.PaymentService;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -18,13 +19,13 @@ public class DefaultPaymentService implements PaymentService {
     private AccountStore accountStore;
     private PaymentStore paymentStore;
 
-    public DefaultPaymentService() {
-        accountStore = new InMemoryAccountStore();
-        paymentStore = new InMemoryPaymentStore();
+    public DefaultPaymentService(AccountStore accountStore, PaymentStore paymentStore) {
+        this.accountStore = accountStore;
+        this.paymentStore = paymentStore;
     }
 
     @Override
-    public void transfer(String initiatorIban, String targetIban, Double amount) {
+    public void transfer(String initiatorIban, String targetIban, BigDecimal amount) {
         Account initiator = accountStore.getAccountByIban(initiatorIban);
         Account target = accountStore.getAccountByIban(targetIban);
 

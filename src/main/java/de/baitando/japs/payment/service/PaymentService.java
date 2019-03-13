@@ -2,6 +2,7 @@ package de.baitando.japs.payment.service;
 
 import de.baitando.japs.payment.model.Payment;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -16,7 +17,7 @@ public interface PaymentService {
      * @param targetIban    IBAN of the account which receives money.
      * @param amount        Amount of money to transfer between the accounts.
      */
-    void transfer(String initiatorIban, String targetIban, Double amount);
+    void transfer(String initiatorIban, String targetIban, BigDecimal amount);
 
     /**
      * Get all payments.

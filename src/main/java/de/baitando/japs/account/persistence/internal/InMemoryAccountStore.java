@@ -5,6 +5,7 @@ import de.baitando.japs.account.persistence.AccountStore;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -20,8 +21,8 @@ public class InMemoryAccountStore implements AccountStore {
     public InMemoryAccountStore() {
         accounts = new HashMap<>();
 
-        addAccount(new Account("DE123456", 1234.12));
-        addAccount(new Account("DE654321", 4321.21));
+        addAccount(new Account("DE123456", BigDecimal.valueOf(1234.12)));
+        addAccount(new Account("DE654321", BigDecimal.valueOf(4321.21)));
     }
 
     private void addAccount(Account account) {

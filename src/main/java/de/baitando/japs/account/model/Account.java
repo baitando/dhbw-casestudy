@@ -1,24 +1,26 @@
 package de.baitando.japs.account.model;
 
+import java.math.BigDecimal;
+
 /**
  * Account with all related in information.
  */
 public class Account {
 
     private String iban;
-    private Double balance;
+    private BigDecimal balance;
 
-    public Account(String iban, Double balance) {
+    public Account(String iban, BigDecimal balance) {
         this.iban = iban;
         this.balance = balance;
     }
 
-    public void debit(Double amount) {
-        balance -= amount;
+    public void debit(BigDecimal amount) {
+        balance = balance.subtract(amount);
     }
 
-    public void credit(Double amount) {
-        balance += amount;
+    public void credit(BigDecimal amount) {
+        balance = balance.add(amount);
     }
 
     @Override
@@ -33,7 +35,7 @@ public class Account {
         return iban;
     }
 
-    public Double getBalance() {
+    public BigDecimal getBalance() {
         return balance;
     }
 }
