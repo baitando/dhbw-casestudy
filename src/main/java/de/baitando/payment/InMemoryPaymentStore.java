@@ -11,8 +11,10 @@ public class InMemoryPaymentStore {
     }
 
     public void addPayment(Payment payment) {
-        payment.id = UUID.randomUUID().toString();
-        payments.put(payment.id, payment);
+        String paymentID = UUID.randomUUID().toString();
+
+        payment.setId(paymentID);
+        payments.put(payment.getId(), payment);
     }
 
     public List<Payment> getPayments() {

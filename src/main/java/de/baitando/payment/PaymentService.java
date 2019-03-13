@@ -7,21 +7,19 @@ public class PaymentService {
     private InMemoryAccountStore accountStore;
     private InMemoryPaymentStore paymentStore;
 
-    public PaymentService() {
-        accountStore = new InMemoryAccountStore();
-        paymentStore = new InMemoryPaymentStore();
+    public PaymentService(InMemoryAccountStore accountStore, InMemoryPaymentStore paymentStore) {
+        this.accountStore = accountStore;
+        this.paymentStore = paymentStore;
     }
 
     public boolean transfer(String initiatorIban, String targetIban, Double amount) {
         Account initiator = accountStore.getAccountByIban(initiatorIban);
         Account target = accountStore.getAccountByIban(targetIban);
 
-        initiator.balance -= amount;
-        target.balance += amount;
+        initiator.setBalance(initiator.getBalance() - amount);
+        target.setBalance(target.getBalance() + amount);
 
-        Payment payment = new Payment();
-        payment.initiator = initiator;
-        payment.target = target;
+        Payment payment = new Payment(initiator, target);
         paymentStore.addPayment(payment);
 
         return true;

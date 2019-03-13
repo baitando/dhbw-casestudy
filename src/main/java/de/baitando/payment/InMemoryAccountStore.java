@@ -10,15 +10,11 @@ public class InMemoryAccountStore {
     public InMemoryAccountStore() {
         accounts = new HashMap<String, Account>();
 
-        Account account1 = new Account();
-        account1.iban = "DE123456";
-        account1.balance = 1234.12;
-        accounts.put(account1.iban, account1);
+        Account account1 = new Account("DE123456", 1234.12);
+        accounts.put(account1.getIban(), account1);
 
-        Account account2 = new Account();
-        account2.iban = "DE654321";
-        account2.balance = 4321.21;
-        accounts.put(account2.iban, account2);
+        Account account2 = new Account("DE654321",4321.21);
+        accounts.put(account2.getIban(), account2);
     }
 
     public Account getAccountByIban(String iban) {

@@ -7,7 +7,10 @@ public class PaymentStarter {
         String initiator = "DE123456";
         String target = "DE654321";
 
-        PaymentService paymentService = new PaymentService();
+        InMemoryAccountStore accountStore = new InMemoryAccountStore();
+        InMemoryPaymentStore paymentStore = new InMemoryPaymentStore();
+
+        PaymentService paymentService = new PaymentService(accountStore, paymentStore);
         paymentService.transfer(initiator, target, 23.34);
 
         System.out.println(paymentService.getPayments());
