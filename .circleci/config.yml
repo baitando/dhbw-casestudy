@@ -11,7 +11,8 @@ jobs:
           name: Save test results
           command: |
             mkdir -p ~/test-results/junit/
-            find . -type f -regex ".*/target/surefire-reports/.*xml" -exec cp {} ~/test-results/junit/ \;
+            find . -type f -regex ".*/target/surefire-reports/.*xml" -exec cp {} ~/test-results/junit/
+            ls -l ~/test-results/junit/
           when: always
       - store_test_results:
             path: ~/test-results
