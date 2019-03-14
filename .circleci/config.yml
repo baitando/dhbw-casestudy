@@ -10,9 +10,9 @@ jobs:
       - run:
           name: Save test results
           command: |
-            mkdir -p test-results/junit/
-            cp target/surefire-reports/*.xml test-results/junit
-            ls -l test-results/junit/
+            mkdir -p project/test-results/junit/
+            cp project/target/surefire-reports/*.xml project/test-results/junit
+            ls -l project/test-results/junit/
           when: always
       - store_test_results:
             path: ~/test-results
