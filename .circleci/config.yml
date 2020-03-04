@@ -1,4 +1,4 @@
-version: 2
+version: 2.1
 jobs:
   build:
     working_directory: ~
@@ -8,11 +8,10 @@ jobs:
       - checkout
       - run: mvn clean test
       - run:
-          name: Save test results
-          command: |
-            mkdir -p project/test-results/junit/
-            cp project/target/surefire-reports/*.xml project/test-results/junit
-            ls -l project/test-results/junit/
-          when: always
-      - store_test_results:
-            path: ~/test-results
+          name: Analyze on SonarCloud
+          command: mvn verify sonar:sonar
+workflows:
+  main:
+    jobs:
+      - build:
+          context: SonarCloud
